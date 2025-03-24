@@ -56,9 +56,10 @@ public class IntervalAction
 #endif
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="IntervalAction"/> class and starts polling.
+	/// Initializes a new instance of the <see cref="IntervalAction"/> class.
+	/// Don't use this constructor. Use <see cref="Start(IntervalActionOptions)"/> instead.
 	/// </summary>
-	private IntervalAction() => Restart();
+	private IntervalAction() { }
 
 	/// <summary>
 	/// Starts a new <see cref="IntervalAction"/> with the specified options.
@@ -71,13 +72,17 @@ public class IntervalAction
 		ArgumentNullException.ThrowIfNull(intervalActionOptions);
 		ArgumentNullException.ThrowIfNull(intervalActionOptions.Action);
 
-		return new()
+		IntervalAction intervalAction = new()
 		{
 			PollingInterval = intervalActionOptions.PollingInterval,
 			Action = intervalActionOptions.Action,
 			ActionInterval = intervalActionOptions.ActionInterval,
 			IntervalType = intervalActionOptions.IntervalType
 		};
+
+		intervalAction.Restart();
+
+		return intervalAction;
 	}
 
 	/// <summary>
