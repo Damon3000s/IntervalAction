@@ -2,15 +2,15 @@
 
 **IntervalAction** is a .NET library that provides a simple way to execute an action at a specified interval.
 
-[![License](https://img.shields.io/github/license/ktsu-dev/IntervalAction.svg?label=&logo=nuget)](LICENSE.md)
+[![License](https://img.shields.io/github/license/ktsu-dev/IntervalAction.svg?label=License&logo=nuget)](LICENSE.md)
 
 [![NuGet Version](https://img.shields.io/nuget/v/ktsu.IntervalAction?label=Stable&logo=nuget)](https://nuget.org/packages/ktsu.IntervalAction)
 [![NuGet Version](https://img.shields.io/nuget/vpre/ktsu.IntervalAction?label=Latest&logo=nuget)](https://nuget.org/packages/ktsu.IntervalAction)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/ktsu.IntervalAction?label=Downloads&logo=nuget)](https://nuget.org/packages/ktsu.IntervalAction)
 
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ktsu-dev/IntervalAction?label=&logo=github)](https://github.com/ktsu-dev/IntervalAction/commits/main)
-[![GitHub contributors](https://img.shields.io/github/contributors/ktsu-dev/IntervalAction?label=&logo=github)](https://github.com/ktsu-dev/IntervalAction/graphs/contributors)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ktsu-dev/IntervalAction/dotnet.yml?label=&logo=github)](https://github.com/ktsu-dev/IntervalAction/actions)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ktsu-dev/IntervalAction?label=Commits&logo=github)](https://github.com/ktsu-dev/IntervalAction/commits/main)
+[![GitHub contributors](https://img.shields.io/github/contributors/ktsu-dev/IntervalAction?label=Contributors&logo=github)](https://github.com/ktsu-dev/IntervalAction/graphs/contributors)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ktsu-dev/IntervalAction/dotnet.yml?label=Build&logo=github)](https://github.com/ktsu-dev/IntervalAction/actions)
 
 ## Supported Targets
 
