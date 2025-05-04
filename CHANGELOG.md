@@ -1,3 +1,9 @@
+## v1.3.1 (patch)
+
+Changes since v1.3.0:
+
+- Enhance documentation and update project SDK references. Improved the library description for clarity and added detailed features and usage examples in README. Updated project files to use the latest SDK versions. ([@matt-edmondson](https://github.com/matt-edmondson))
+
 ## v1.3.0 (minor)
 
 Changes since v1.2.0:
