@@ -1,3 +1,7 @@
+// Copyright (c) ktsu.dev
+// All rights reserved.
+// Licensed under the MIT license.
+
 namespace ktsu.IntervalAction.Test;
 
 [TestClass]
@@ -6,7 +10,7 @@ public class IntervalActionTests
 	[TestMethod]
 	public async Task ActionExecutesAfterIntervalFromLastCompletion()
 	{
-		int counter = 0;
+		var counter = 0;
 		var options = new IntervalActionOptions
 		{
 			PollingInterval = TimeSpan.FromMilliseconds(100),
@@ -30,7 +34,7 @@ public class IntervalActionTests
 	[TestMethod]
 	public async Task NoOverlappingExecutions()
 	{
-		int executions = 0;
+		var executions = 0;
 		// Simulate a long-running action so that overlapping is prevented.
 		var options = new IntervalActionOptions
 		{
@@ -60,7 +64,7 @@ public class IntervalActionTests
 	[TestMethod]
 	public async Task RestartResumesExecution()
 	{
-		int counter = 0;
+		var counter = 0;
 		var options = new IntervalActionOptions
 		{
 			PollingInterval = TimeSpan.FromMilliseconds(100),
@@ -74,7 +78,7 @@ public class IntervalActionTests
 		// Allow some executions.
 		await Task.Delay(700).ConfigureAwait(false);
 		actionInstance.Stop();
-		int countAfterStop = counter;
+		var countAfterStop = counter;
 
 		// Wait to ensure no further execution occurs after stopping.
 		await Task.Delay(500).ConfigureAwait(false);
@@ -114,7 +118,7 @@ public class IntervalActionTests
 	public async Task RestartStopsPreviousPollingTaskAndStartsNewOne()
 	{
 		// Arrange
-		int counter = 0;
+		var counter = 0;
 		var options = new IntervalActionOptions
 		{
 			PollingInterval = TimeSpan.FromMilliseconds(10),
@@ -147,7 +151,7 @@ public class IntervalActionTests
 	public async Task StopPollingTaskStopsExecuting()
 	{
 		// Arrange
-		int counter = 0;
+		var counter = 0;
 		var options = new IntervalActionOptions
 		{
 			PollingInterval = TimeSpan.FromMilliseconds(10),
@@ -164,7 +168,7 @@ public class IntervalActionTests
 		intervalAction.Stop();
 		// Await the polling task to ensure the loop has exited.
 		await intervalAction.PollingTask.ConfigureAwait(false);
-		int counterAfterStop = counter;
+		var counterAfterStop = counter;
 
 		// Wait additional time to verify no further actions are executed.
 		await Task.Delay(30).ConfigureAwait(false);
@@ -177,7 +181,7 @@ public class IntervalActionTests
 	public async Task RethrowExceptionsThrowsException()
 	{
 		// Arrange
-		string exceptionMessage = "Test exception message";
+		var exceptionMessage = "Test exception message";
 		var options = new IntervalActionOptions
 		{
 			PollingInterval = TimeSpan.FromMilliseconds(10),
