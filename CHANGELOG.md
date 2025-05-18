@@ -7,6 +7,15 @@ Changes since v1.3.2-pre.15:
 - Remove Directory.Build.props and Directory.Build.targets files; add copyright notices to IntervalAction source files and tests; update variable declarations in tests for consistency. ([@matt-edmondson](https://github.com/matt-edmondson))
 - Refactor IntervalAction constructor and Start method ([@matt-edmondson](https://github.com/matt-edmondson))
 - Initial commit ([@matt-edmondson](https://github.com/matt-edmondson))
+## v1.3.2-pre.16 (prerelease)
+
+Changes since v1.3.2-pre.15:
+
+- Enhance documentation and update project SDK references. Improved the library description for clarity and added detailed features and usage examples in README. Updated project files to use the latest SDK versions. ([@matt-edmondson](https://github.com/matt-edmondson))
+- Add LICENSE template ([@matt-edmondson](https://github.com/matt-edmondson))
+- Remove Directory.Build.props and Directory.Build.targets files; add copyright notices to IntervalAction source files and tests; update variable declarations in tests for consistency. ([@matt-edmondson](https://github.com/matt-edmondson))
+- Refactor IntervalAction constructor and Start method ([@matt-edmondson](https://github.com/matt-edmondson))
+- Initial commit ([@matt-edmondson](https://github.com/matt-edmondson))
 ## v1.3.2-pre.15 (prerelease)
 
 Changes since v1.3.2-pre.14:
