@@ -1,6 +1,6 @@
 MIT License
 
-https://github.com/ktsu-dev/ktsu-dev/IntervalAction
+https://github.com/ktsu-dev/IntervalAction
 
 Copyright (c) 2023-2025 ktsu-dev
 
