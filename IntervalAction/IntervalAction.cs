@@ -7,7 +7,7 @@ namespace ktsu.IntervalAction;
 /// <summary>
 /// Represents an action that is executed at specified intervals.
 /// Provides options for the interval type, which can be measured from the last completion or start time of the action.
-/// 
+///
 /// NOTE: Tasks will not be started if the previous task is still running to prevent overlapping executions.
 /// If the task is still running when the interval is reached, the new task will be started on the next TryRun call after the previous task completes.
 /// </summary>
@@ -73,8 +73,13 @@ public class IntervalAction
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="intervalActionOptions"/> or its <see cref="IntervalActionOptions.Action"/> is null.</exception>
 	public static IntervalAction Start(IntervalActionOptions intervalActionOptions)
 	{
+#if !NET6_0_OR_GREATER
+		ArgumentNullExceptionPolyfill.ThrowIfNull(intervalActionOptions);
+		ArgumentNullExceptionPolyfill.ThrowIfNull(intervalActionOptions.Action);
+#else
 		ArgumentNullException.ThrowIfNull(intervalActionOptions);
 		ArgumentNullException.ThrowIfNull(intervalActionOptions.Action);
+#endif
 
 		IntervalAction intervalAction = new()
 		{
@@ -157,7 +162,11 @@ public class IntervalAction
 	/// <returns><c>true</c> if the action was started; otherwise, <c>false</c>.</returns>
 	internal bool TryRun()
 	{
+#if !NET6_0_OR_GREATER
+		ArgumentNullExceptionPolyfill.ThrowIfNull(Action);
+#else
 		ArgumentNullException.ThrowIfNull(Action);
+#endif
 
 		if (ActionTask?.IsCompleted ?? false)
 		{
@@ -176,7 +185,7 @@ public class IntervalAction
 			lastRunTime = LastRunTime;
 		}
 
-		if (ActionTask is null && DateTimeOffset.Now - lastRunTime > ActionInterval)
+		if (ActionInterval >= TimeSpan.Zero && ActionTask is null && DateTimeOffset.Now - lastRunTime > ActionInterval)
 		{
 			ActionTask = Task.Run(() =>
 			{

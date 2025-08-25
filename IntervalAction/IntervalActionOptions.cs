@@ -34,17 +34,17 @@ public class IntervalActionOptions
 	/// <summary>
 	/// The interval at which the action should be executed.
 	/// </summary>
-	public required TimeSpan ActionInterval { get; init; }
+	public TimeSpan ActionInterval { get; init; } = TimeSpan.Zero;
 
 	/// <summary>
 	/// The action to be executed at each interval.
 	/// </summary>
-	public required Action Action { get; init; }
+	public Action Action { get; init; } = () => { };
 
 	/// <summary>
 	/// The type of interval measurement for the action, either from the last completion or start time of the action.
 	/// Default is <see cref="IntervalType.FromLastCompletion"/>.
-	/// 
+	///
 	/// NOTE: Tasks will not be started if the previous task is still running to prevent overlapping executions.
 	/// If the task is still running when the interval is reached, the new task will be started on the next polling interval after the previous task completes.
 	/// </summary>
