@@ -199,4 +199,70 @@ public class IntervalActionTests
 		Assert.AreEqual(exceptionMessage, exception.Message);
 		intervalAction.Stop();
 	}
+
+	[TestMethod]
+	public async Task ZeroIntervalExecutesQuickly()
+	{
+		int counter = 0;
+		IntervalActionOptions options = new()
+		{
+			PollingInterval = TimeSpan.FromMilliseconds(10),
+			ActionInterval = TimeSpan.Zero,
+			Action = () => Interlocked.Increment(ref counter),
+			IntervalType = IntervalType.FromLastStart
+		};
+
+		IntervalAction intervalAction = IntervalAction.Start(options);
+		await Task.Delay(40).ConfigureAwait(false);
+		intervalAction.Stop();
+		Assert.IsTrue(counter > 0, $"Expected at least one execution, got {counter}.");
+
+		intervalAction.RethrowExceptions();
+	}
+
+	[TestMethod]
+	public async Task NegativeIntervalNeverExecutes()
+	{
+		int counter = 0;
+		IntervalActionOptions options = new()
+		{
+			PollingInterval = TimeSpan.FromMilliseconds(10),
+			ActionInterval = TimeSpan.FromMilliseconds(-1),
+			Action = () => Interlocked.Increment(ref counter),
+			IntervalType = IntervalType.FromLastStart
+		};
+
+		IntervalAction intervalAction = IntervalAction.Start(options);
+		await Task.Delay(50).ConfigureAwait(false);
+		intervalAction.Stop();
+		Assert.AreEqual(0, counter, $"Expected zero executions for negative interval, got {counter}.");
+
+		intervalAction.RethrowExceptions();
+	}
+
+	[TestMethod]
+	public async Task StopIsIdempotent()
+	{
+		int counter = 0;
+		IntervalActionOptions options = new()
+		{
+			PollingInterval = TimeSpan.FromMilliseconds(10),
+			ActionInterval = TimeSpan.FromMilliseconds(10),
+			Action = () => Interlocked.Increment(ref counter),
+			IntervalType = IntervalType.FromLastStart
+		};
+
+		IntervalAction intervalAction = IntervalAction.Start(options);
+		await Task.Delay(40).ConfigureAwait(false);
+		intervalAction.Stop();
+		await intervalAction.PollingTask.ConfigureAwait(false);
+		int countAfterFirstStop = counter;
+
+		// Call Stop again; should not throw and should not resume execution
+		intervalAction.Stop();
+		await Task.Delay(30).ConfigureAwait(false);
+		Assert.AreEqual(countAfterFirstStop, counter, "Stop should be idempotent and prevent further executions.");
+
+		intervalAction.RethrowExceptions();
+	}
 }

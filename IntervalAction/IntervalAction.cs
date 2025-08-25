@@ -172,7 +172,7 @@ public class IntervalAction
 		{
 			if (ActionTask.Exception is not null)
 			{
-				throw ActionTask.Exception.InnerException ?? ActionTask.Exception;
+				throw ActionTask.Exception.GetBaseException();
 			}
 
 			ActionTask = null;
@@ -221,7 +221,7 @@ public class IntervalAction
 	{
 		if (PollingTask.Exception is not null)
 		{
-			throw PollingTask.Exception.InnerException ?? PollingTask.Exception;
+			throw PollingTask.Exception.GetBaseException();
 		}
 	}
 }
