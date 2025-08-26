@@ -1,5 +1,3 @@
-## v1.3.3 (patch)
+## v1.3.3
 
-Changes since v1.3.2:
-
-- Convert to PolySharp ([@Damon3000s](https://github.com/Damon3000s))
+No significant changes detected since v1.3.3.
