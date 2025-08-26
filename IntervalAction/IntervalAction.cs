@@ -53,11 +53,7 @@ public class IntervalAction
 	/// </summary>
 	private IntervalType IntervalType { get; init; }
 
-#if NET9_0_OR_GREATER
 	private Lock Lock { get; } = new();
-#else
-	private object Lock { get; } = new();
-#endif
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="IntervalAction"/> class.
@@ -73,13 +69,8 @@ public class IntervalAction
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="intervalActionOptions"/> or its <see cref="IntervalActionOptions.Action"/> is null.</exception>
 	public static IntervalAction Start(IntervalActionOptions intervalActionOptions)
 	{
-#if !NET6_0_OR_GREATER
-		ArgumentNullExceptionPolyfill.ThrowIfNull(intervalActionOptions);
-		ArgumentNullExceptionPolyfill.ThrowIfNull(intervalActionOptions.Action);
-#else
-		ArgumentNullException.ThrowIfNull(intervalActionOptions);
-		ArgumentNullException.ThrowIfNull(intervalActionOptions.Action);
-#endif
+		Guard.NotNull(intervalActionOptions);
+		Guard.NotNull(intervalActionOptions.Action);
 
 		IntervalAction intervalAction = new()
 		{
@@ -162,11 +153,7 @@ public class IntervalAction
 	/// <returns><c>true</c> if the action was started; otherwise, <c>false</c>.</returns>
 	internal bool TryRun()
 	{
-#if !NET6_0_OR_GREATER
-		ArgumentNullExceptionPolyfill.ThrowIfNull(Action);
-#else
-		ArgumentNullException.ThrowIfNull(Action);
-#endif
+		Guard.NotNull(Action);
 
 		if (ActionTask?.IsCompleted ?? false)
 		{
