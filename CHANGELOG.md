@@ -1,8 +1,9 @@
-## v1.3.4-pre.4 (prerelease)
+## v1.3.4 (patch)
 
-Changes since v1.3.4-pre.3:
+Changes since v1.3.3:
 
-- Sync scripts\update-winget-manifests.ps1 ([@ktsu[bot]](https://github.com/ktsu[bot]))
+- Add CLAUDE.md for project guidance and documentation ([@matt-edmondson](https://github.com/matt-edmondson))
+- Remove caching configuration for .NET setup in workflow ([@matt-edmondson](https://github.com/matt-edmondson))
 ## v1.3.4-pre.4 (prerelease)
 
 Changes since v1.3.4-pre.3:
