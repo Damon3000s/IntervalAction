@@ -2,6 +2,8 @@
 // All rights reserved.
 // Licensed under the MIT license.
 
+[assembly: DoNotParallelize]
+
 namespace ktsu.IntervalAction.Test;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,7 +30,7 @@ public class IntervalActionTests
 		actionInstance.Stop();
 
 		// Expect at least 3 executions.
-		Assert.IsTrue(counter >= 3, $"Expected at least 3 executions, but got {counter}.");
+		Assert.IsGreaterThanOrEqualTo(3, counter, $"Expected at least 3 executions, but got {counter}.");
 
 		actionInstance.RethrowExceptions();
 	}
@@ -58,7 +60,7 @@ public class IntervalActionTests
 		actionInstance.Stop();
 
 		// With a long-running action, overlapping should be prevented resulting in fewer executions.
-		Assert.IsTrue(executions <= 3, $"Expected no overlapping executions, but got {executions} executions.");
+		Assert.IsLessThanOrEqualTo(3, executions, $"Expected no overlapping executions, but got {executions} executions.");
 
 		actionInstance.RethrowExceptions();
 	}
@@ -90,7 +92,7 @@ public class IntervalActionTests
 		await actionInstance.RestartAsync().ConfigureAwait(false);
 		await Task.Delay(700).ConfigureAwait(false);
 		actionInstance.Stop();
-		Assert.IsTrue(counter > countAfterStop, "Executions should resume after restarting.");
+		Assert.IsGreaterThan(countAfterStop, counter, "Executions should resume after restarting.");
 
 		actionInstance.RethrowExceptions();
 	}
@@ -138,11 +140,11 @@ public class IntervalActionTests
 		await intervalAction.RestartAsync().ConfigureAwait(false);
 
 		// Assert: The old polling task should have completed.
-		Assert.IsTrue(oldPollingTask.IsCompleted);
+		Assert.IsTrue(oldPollingTask.IsCompleted, "Old polling task should have completed after restart");
 
 		// Allow new polling task to run a bit.
 		await Task.Delay(30).ConfigureAwait(false);
-		Assert.IsTrue(counter > 0);
+		Assert.IsGreaterThan(0, counter, "Counter should have incremented after restart");
 
 		intervalAction.Stop();
 
@@ -215,7 +217,7 @@ public class IntervalActionTests
 		IntervalAction intervalAction = IntervalAction.Start(options);
 		await Task.Delay(40).ConfigureAwait(false);
 		intervalAction.Stop();
-		Assert.IsTrue(counter > 0, $"Expected at least one execution, got {counter}.");
+		Assert.IsGreaterThan(0, counter, $"Expected at least one execution, got {counter}.");
 
 		intervalAction.RethrowExceptions();
 	}

@@ -69,8 +69,8 @@ public class IntervalAction
 	/// <exception cref="ArgumentNullException">Thrown if <paramref name="intervalActionOptions"/> or its <see cref="IntervalActionOptions.Action"/> is null.</exception>
 	public static IntervalAction Start(IntervalActionOptions intervalActionOptions)
 	{
-		Guard.NotNull(intervalActionOptions);
-		Guard.NotNull(intervalActionOptions.Action);
+		Ensure.NotNull(intervalActionOptions);
+		Ensure.NotNull(intervalActionOptions.Action);
 
 		IntervalAction intervalAction = new()
 		{
@@ -153,7 +153,7 @@ public class IntervalAction
 	/// <returns><c>true</c> if the action was started; otherwise, <c>false</c>.</returns>
 	internal bool TryRun()
 	{
-		Guard.NotNull(Action);
+		Ensure.NotNull(Action);
 
 		if (ActionTask?.IsCompleted ?? false)
 		{

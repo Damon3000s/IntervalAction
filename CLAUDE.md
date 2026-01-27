@@ -141,5 +141,5 @@ IntervalAction/
 ### Dependencies
 
 The library has minimal external dependencies:
-- Uses `Guard.NotNull()` for argument validation (likely from ktsu.Sdk)
+- Uses `Ensure.NotNull()` for argument validation (likely from ktsu.Sdk)
 - Standard .NET libraries only (System.Threading.Tasks, etc.)
