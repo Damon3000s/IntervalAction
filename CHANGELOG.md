@@ -1,3 +1,8 @@
+## v1.3.7 (patch)
+
+Changes since v1.3.6:
+
+- Add compatibility suppressions for new .NET versions and dynamic member types ([@matt-edmondson](https://github.com/matt-edmondson))
 ## v1.3.6 (patch)
 
 Changes since v1.3.5:
@@ -5,13 +10,7 @@ Changes since v1.3.5:
 - Remove .github\workflows\project.yml ([@matt-edmondson](https://github.com/matt-edmondson))
 ## v1.3.6-pre.1 (prerelease)
 
-Changes since v1.3.5:
-
-- Merge remote-tracking branch 'refs/remotes/origin/main' ([@ktsu[bot]](https://github.com/ktsu[bot]))
-- Merge remote-tracking branch 'refs/remotes/origin/main' ([@ktsu[bot]](https://github.com/ktsu[bot]))
-- Sync .github\workflows\dotnet.yml ([@ktsu[bot]](https://github.com/ktsu[bot]))
-- Sync global.json ([@ktsu[bot]](https://github.com/ktsu[bot]))
-- Sync .gitignore ([@ktsu[bot]](https://github.com/ktsu[bot]))
+Incremental prerelease update.
 ## v1.3.5 (patch)
 
 Changes since v1.3.4:
